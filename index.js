@@ -66,7 +66,55 @@
 	})
 
 }
-//页面右侧部分
+//nave效果
+	let labels=document.querySelectorAll(".label");   
+	let menus=document.querySelectorAll(".menu");  
+	let obj=menus[0]; 
+	labels.forEach(function(ele,index){
+		ele.onmouseenter=function(){
+			obj.style.display="none";
+			menus[index].style.display="block";
+			obj=menus[index];
+		}
+		ele.onmouseleave=function(){
+			menus[index].style.display="none";
+		}
+	})
+
+
+//页面顶端部分
+{
+	let labels=document.querySelectorAll(".head_btn");   
+	let menus=document.querySelectorAll(".wangzhan_box");  
+	let obj=menus[0]; 
+	labels.forEach(function(ele,index){
+		ele.onmouseenter=function(){
+			obj.style.display="none";
+			menus[index].style.display="block";
+			obj=menus[index];
+		}
+		ele.onmouseleave=function(){
+			menus[index].style.display="none";
+		}
+	})
+}
+//搜索部分
+
+{
+	let box=document.querySelector(".sousuo_box");
+	let center=document.querySelector(".sousuo_box_center");
+	let shenghuo=document.querySelector(".sousuo_shenghuo");
+	let foot=document.querySelector(".sousuo_box_foot");
+	center.onclick=function(){
+		foot.style.cssText="display:block;color:rgb(0,0,0)";
+		shenghuo.placeholder="";
+	}
+	center.onmouseleave=function(){
+		foot.style.display="none";
+		shenghuo.placeholder="生活家电每200减20";
+	}
+}
+//页面左右侧totop部分
 {
 	let totop=document.querySelector(".totop");
 	let leftBar_icon2=document.querySelector(".leftBar_icon2");
@@ -94,8 +142,48 @@
 		},25)	
 	}
 }
-//页面上 左部分
+{
+	function right(parent){
+		let body_right_list=parent.querySelector(".body_right_licai a");
+		let body_center_icon=parent.querySelector(".body_center_icon");
+		let body_right_word2=parent.querySelector(".body_right_word2");
+		let body_right_word3=parent.querySelector(".body_right_word3");
+		let four=parent.querySelector(".body_right_word4");
+		// body_right_licai.forEach(function(ele,index){
+			body_right_list.onmouseenter=function(){
 
+				body_right_word2.style.cssText="left:-47px;background-color:#FFAA01;color:#383838";
+				body_right_word3.style.cssText="left:-73px;background-color:#FFAA01;color:#383838";
+
+				four.style.cssText="left:-800px";
+				
+			}
+			body_right_list.onmouseleave=function(){
+				body_right_word2.style.cssText="left:0;background-color:#383838;color:#FFAA01";
+				body_right_word3.style.cssText="left:0;background-color:#383838;color:#FFAA01";
+
+				four.style.cssText="left:0";
+			}
+		// })
+	}
+	const contentlist=document.querySelectorAll(".body_right_licai");
+	contentlist.forEach(function(ele){
+		right(ele);
+	})
+	// let body_right_list=document.querySelector(".body_right_licai a");
+	// let four=document.querySelector(".body_right_word4");
+	// body_right_list.onmouseenter=function(){
+	// 	four.style.cssText="left:-800px";
+				
+	// }
+	// body_right_list.onmouseleave=function(){
+				
+	// 	four.style.cssText="left:0";
+	// }
+
+}
+//页面上 左部分
+{
 	let topBar=document.querySelector(".topBar");
 	let leftBar=document.querySelector(".leftBar");
 	let banner_quanbu=document.querySelector(".banner_quanbu");
@@ -108,27 +196,11 @@
 		if(st>774){
 			topBar.style.display="block";
 
-			banner_quanbu.style.position="fixed";
-			banner_quanbu.style.top="5px";
-			banner_quanbu.style.left="11%";
-
-			banner_nav.style.display="none";
-
-			banner_nav.style.position="fixed";
-			banner_nav.style.top="40px";
-			banner_nav.style.left="11%";
-
-			sousuo_box.style.position="fixed";
-			sousuo_box.style.top="5px";
-			sousuo_box.style.left="36%";
-
-			topBar_wenzi.style.position="fixed";
-			topBar_wenzi.style.top="8px";
-			topBar_wenzi.style.left="73%";
-
-			topBar_right.style.position="fixed";
-			topBar_right.style.top="8px";
-			topBar_right.style.left="83%";
+			banner_quanbu.style.cssText="position:fixed;top:5px;left:11%;";
+			banner_nav.style.cssText="display:none;position:fixed;top:40px;left:11%";
+			sousuo_box.style.cssText="position:fixed;top:5px;left:36%";
+			topBar_wenzi.style.cssText="position:fixed;top:8px;left:73%";
+			topBar_right.style.cssText="position:fixed;top:6px;right:50%;margin-right:-594px";
 
 			banner_quanbu.onmouseenter=function(){
 				banner_nav.style.display="block";
@@ -140,23 +212,18 @@
 		}else{
 			topBar.style.display="none";
 
-			banner_quanbu.style.position="absolute";
-			banner_quanbu.style.top="0";
-			banner_quanbu.style.left="0";
+			banner_quanbu.style.cssText="position:absolute;top:0;left:0";
+			banner_nav.style.cssText="position:absolute;top:0;left:0";
+			sousuo_box.style.cssText="position:absolute;top:30px;left:0";
 
-			banner_nav.style.position="absolute";
-			banner_nav.style.top="0";
-			banner_nav.style.left="0";
+			topBar_wenzi.style.position="relative";
 
-			sousuo_box.style.position="absolute";
-			sousuo_box.style.top="30px";
-			sousuo_box.style.left="0";
-
-			// topBar_wenzi.style.position="relative";
-
-			// topBar_right.style.position="relative";
+			topBar_right.style.position="relative";
 
 			banner_nav.style.display="block";	
+			banner_nav.onmouseleave=function(){
+				banner_nav.style.display="block";
+			}
 		}
 		if(st<2600){
 			leftBar.style.display="none";
@@ -166,9 +233,9 @@
 		
 	}
 
-//左侧
+	//左侧
 
-{
+	{
 		let tips=document.querySelectorAll(".tips");
 		let containers=document.querySelectorAll(".container");
 		tips.forEach(function(ele,index){
@@ -203,20 +270,9 @@
 			}
 		})
 	}
-	//nave效果
-	let labels=document.querySelectorAll(".label");   
-	let menus=document.querySelectorAll(".menu");  
-	let obj=menus[0]; 
-	labels.forEach(function(ele,index){
-		ele.onmouseenter=function(){
-			obj.style.display="none";
-			menus[index].style.display="block";
-			obj=menus[index];
-		}
-		ele.onmouseleave=function(){
-			menus[index].style.display="none";
-		}
-	})
+}
+
+	
 //大聚惠部分效果
 {
 	const prev=document.querySelector(".dajuhui_lbtn");
