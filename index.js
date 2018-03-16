@@ -145,41 +145,34 @@
 {
 	function right(parent){
 		let body_right_list=parent.querySelector(".body_right_licai a");
+		// let body_right_yijian=parent.querySelector(".body_right_yijian");
+		// let body_right_saomiao=parent.querySelector(".body_right_saomiao");
 		let body_center_icon=parent.querySelector(".body_center_icon");
 		let body_right_word2=parent.querySelector(".body_right_word2");
 		let body_right_word3=parent.querySelector(".body_right_word3");
-		let four=parent.querySelector(".body_right_word4");
-		// body_right_licai.forEach(function(ele,index){
+		let body_right_word4=parent.querySelector(".body_right_word4");
+
 			body_right_list.onmouseenter=function(){
 
-				body_right_word2.style.cssText="left:-47px;background-color:#FFAA01;color:#383838";
-				body_right_word3.style.cssText="left:-73px;background-color:#FFAA01;color:#383838";
+				body_right_word2.style.cssText="left:-47px";
+				body_right_word3.style.cssText="left:-73px";
 
-				four.style.cssText="left:-800px";
+				body_right_word4.style.cssText="left:-800px";
 				
 			}
+			
 			body_right_list.onmouseleave=function(){
 				body_right_word2.style.cssText="left:0;background-color:#383838;color:#FFAA01";
 				body_right_word3.style.cssText="left:0;background-color:#383838;color:#FFAA01";
 
-				four.style.cssText="left:0";
+				body_right_word4.style.cssText="left:0";
 			}
-		// })
+			
 	}
 	const contentlist=document.querySelectorAll(".body_right_licai");
 	contentlist.forEach(function(ele){
 		right(ele);
 	})
-	// let body_right_list=document.querySelector(".body_right_licai a");
-	// let four=document.querySelector(".body_right_word4");
-	// body_right_list.onmouseenter=function(){
-	// 	four.style.cssText="left:-800px";
-				
-	// }
-	// body_right_list.onmouseleave=function(){
-				
-	// 	four.style.cssText="left:0";
-	// }
 
 }
 //页面上 左部分
@@ -238,8 +231,11 @@
 	{
 		let tips=document.querySelectorAll(".tips");
 		let containers=document.querySelectorAll(".container");
+		let flag=true;
 		tips.forEach(function(ele,index){
+			
 			ele.onclick=function(){
+				flag=false;
 				let ot=containers[index].offsetTop+560;
 				containers[index].offsetTop=ot;
 				let now=document.documentElement.scrollTop;
@@ -250,23 +246,26 @@
 					now+=speed;
 					if(time===250){
 						clearInterval(t);
+						flag=true;
 					}
 					document.documentElement.scrollTop=now;
 				},25)
 			}
 		});
 		window.addEventListener("scroll",function(ele,index){
-			let st=document.documentElement.scrollTop;
-			
-			for(let i=0;i<containers.length;i++){
-   				if(st>containers[i].offsetTop-50){
-   					for(let i=0;i<tips.length;i++){
-   						tips[i].classList.remove("active");
-   					}
-   					
-   					tips[i].classList.add("active");
-   					
-   				}
+			if(flag){
+				let st=document.documentElement.scrollTop;
+				
+				for(let i=0;i<containers.length;i++){
+	   				if(st>containers[i].offsetTop+50){
+	   					for(let i=0;i<tips.length;i++){
+	   						tips[i].classList.remove("active");
+	   					}
+	   					
+	   					tips[i].classList.add("active");
+	   					
+	   				}
+				}
 			}
 		})
 	}
@@ -278,29 +277,36 @@
 	const prev=document.querySelector(".dajuhui_lbtn");
 	const next=document.querySelector(".dajuhui_rbtn");
 	const inner=document.querySelector(".dajuhui_inner");
-	let n=0;
+	let n=1;
+	let flag=true;
 	next.onclick=function(){
-		n++;
-		prev.classList.remove("disable");
-		if(n===2){
-			this.classList.add("disable");
+		if(flag){
+			flag=false;
+			n++;
+			inner.style.transition="all 1s";
+			inner.style.marginLeft=-1000*n+"px";
+			
 		}
-		if(n===3){
-			n=2;
-			return;
-		}
-		inner.style.marginLeft=-1000*n+"px";
 	}
 	prev.onclick=function(){
-		n--;
-		next.classList.remove("disable");
-		if(n===0){
-			this.classList.add("disable");
+		if(flag){
+			flag=false;
+			n--;
+			inner.style.transition="all 1s";
+			inner.style.marginLeft=-1000*n+"px";
 		}
-		if(n===-1){
-			n=0;
-			return;
-		}
-		inner.style.marginLeft=-1000*n+"px";
 	}
+	inner.addEventListener("transitionend",function(){
+		flag=true;
+		if(n===4){
+			inner.style.transition="none";
+			inner.style.marginLeft="-1000px";
+			n=1;
+		}
+		if(n===0){
+			inner.style.transition="none";
+			inner.style.marginLeft="-3000px";
+			n=3;
+		}
+	})
 }
