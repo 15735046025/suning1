@@ -116,7 +116,7 @@
 }
 //页面左右侧totop部分
 {
-	let totop=document.querySelector(".totop");
+	let totop=document.querySelector(".body_totop_icon");
 	let leftBar_icon2=document.querySelector(".leftBar_icon2");
 
 	totop.onclick=function(){
@@ -145,28 +145,29 @@
 {
 	function right(parent){
 		let body_right_list=parent.querySelector(".body_right_licai a");
-		// let body_right_yijian=parent.querySelector(".body_right_yijian");
-		// let body_right_saomiao=parent.querySelector(".body_right_saomiao");
 		let body_center_icon=parent.querySelector(".body_center_icon");
 		let body_right_word2=parent.querySelector(".body_right_word2");
 		let body_right_word3=parent.querySelector(".body_right_word3");
 		let body_right_word4=parent.querySelector(".body_right_word4");
+		let body_right_red=parent.querySelector(".body_right_red");
 
-			body_right_list.onmouseenter=function(){
+		body_right_list.onmouseenter=function(){
 
-				body_right_word2.style.cssText="left:-47px";
-				body_right_word3.style.cssText="left:-73px";
+			body_right_word2.style.cssText="left:-47px";
+			body_right_word3.style.cssText="left:-73px";
 
-				body_right_word4.style.cssText="left:-800px";
-				
-			}
+			body_right_word4.style.cssText="left:-800px";
+			body_right_red.style.display="block";
 			
-			body_right_list.onmouseleave=function(){
-				body_right_word2.style.cssText="left:0;background-color:#383838;color:#FFAA01";
-				body_right_word3.style.cssText="left:0;background-color:#383838;color:#FFAA01";
+		}
+		
+		body_right_list.onmouseleave=function(){
+			body_right_word2.style.cssText="left:0;background-color:#383838;color:#FFAA01";
+			body_right_word3.style.cssText="left:0;background-color:#383838;color:#FFAA01";
 
-				body_right_word4.style.cssText="left:0";
-			}
+			body_right_word4.style.cssText="left:0";
+			body_right_red.style.display="none";
+		}
 			
 	}
 	const contentlist=document.querySelectorAll(".body_right_licai");
@@ -175,7 +176,7 @@
 	})
 
 }
-//页面上 左部分
+//页面上topBar部分
 {
 	let topBar=document.querySelector(".topBar");
 	let leftBar=document.querySelector(".leftBar");
@@ -209,7 +210,7 @@
 			banner_nav.style.cssText="position:absolute;top:0;left:0";
 			sousuo_box.style.cssText="position:absolute;top:30px;left:0";
 
-			topBar_wenzi.style.position="relative";
+			topBar_wenzi.style.position="position:relative";
 
 			topBar_right.style.position="relative";
 
@@ -309,4 +310,148 @@
 			n=3;
 		}
 	})
+}
+//排行榜效果
+{
+	let prev=document.querySelector(".paihangbang .prev");
+	let next=document.querySelector(".paihangbang .next");
+	let inner=document.querySelector(".paihang_inner");
+	let pagers=document.querySelectorAll(".paihang_pager");
+	let n=1;
+	let flag=true;
+	next.onclick=function(){
+		if(flag){
+			flag=false;
+			n++;
+			inner.style.transition="all 1s";
+			inner.style.marginLeft=-390*n+"px";
+			pagers[n-1].classList.add("active");
+			pagers[n-2].classList.remove("active");
+			obj=pagers[n-1];
+		}
+	}
+
+	prev.onclick=function(){
+		if(flag){
+			flag=false;
+			n--;
+			inner.style.transition="all 1s";
+			inner.style.marginLeft=-390*n+"px";
+			pagers[n].classList.add("active");
+			pagers[n+1].classList.remove("active");
+			obj=pagers[n];
+		}
+
+	}
+	let obj=pagers[0];
+	pagers.forEach(function(ele,index){
+		ele.onclick=function(){
+			obj.classList.remove("active");
+			ele.classList.add("active");
+			obj=ele;
+			inner.style.marginLeft=index*-390+"px";
+			n=index;
+		}
+
+	})
+
+	inner.addEventListener("transitionend", function(){
+		flag=true;
+		if(n===4){
+			inner.style.transition="none";
+			inner.style.marginLeft="-390px";
+			pagers[0].classList.add("active");
+			pagers[2].classList.remove("active");
+			obj=pagers[0];
+			n=1;
+		}
+		if(n===0){
+			inner.style.transition="none";
+			inner.style.marginLeft="-1170px";
+			pagers[2].classList.add("active");
+			pagers[0].classList.remove("active");
+			obj=pagers[2];
+			n=3;
+		}
+	})
+	
+}
+{
+
+	const prev=document.querySelector(".shipin_lbtn");
+	const next=document.querySelector(".shipin_rbtn");
+	const inner=document.querySelector(".shipin_inner");
+	let n=1;
+	let flag=true;
+	next.onclick=function(){
+		if(flag){
+			flag=false;
+			n++;
+			inner.style.transition="all 1s";
+			inner.style.marginLeft=-390*n+"px";
+			
+		}
+	}
+	prev.onclick=function(){
+		if(flag){
+			flag=false;
+			n--;
+			inner.style.transition="all 1s";
+			inner.style.marginLeft=-390*n+"px";
+		}
+	}
+	inner.addEventListener("transitionend",function(){
+		flag=true;
+		if(n===3){
+			inner.style.transition="none";
+			inner.style.marginLeft="-390px";
+			n=1;
+		}
+		if(n===0){
+			inner.style.transition="none";
+			inner.style.marginLeft="-780px";
+			n=2;
+		}
+	})
+
+}
+//清单拼购效果
+{
+	let prev=document.querySelector(".shopping_lbtn");
+	let next=document.querySelector(".shopping_rbtn");
+	let inner=document.querySelector(".shopping_inner");
+	let n=1;
+	let flag=true;
+	next.onclick=function(){
+		if(flag){
+			flag=false;
+			n++;
+			inner.style.transition="all 1s";
+			inner.style.marginLeft=-570*n+"px";
+		}
+	}
+
+	prev.onclick=function(){
+		if(flag){
+			flag=false;
+			n--;
+			inner.style.transition="all 1s";
+			inner.style.marginLeft=-570*n+"px";
+		}
+
+	}
+	inner.addEventListener("transitionend", function(){
+		flag=true;
+		if(n===4){
+			inner.style.transition="none";
+			inner.style.marginLeft="-570px";
+			n=1;
+		}
+		if(n===0){
+			inner.style.transition="none";
+			inner.style.marginLeft="-1710px";
+			n=3;
+		}
+	})
+	
 }
