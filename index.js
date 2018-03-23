@@ -142,40 +142,62 @@
 		},25)	
 	}
 }
+//右侧部分效果
 {
 	function right(parent){
-		let body_right_list=parent.querySelector(".body_right_licai a");
-		let body_center_icon=parent.querySelector(".body_center_icon");
+		let body_right_list=parent.querySelector(".body_right_item1 a");
 		let body_right_word2=parent.querySelector(".body_right_word2");
-		let body_right_word3=parent.querySelector(".body_right_word3");
-		let body_right_word4=parent.querySelector(".body_right_word4");
-		let body_right_red=parent.querySelector(".body_right_red");
+		
 
 		body_right_list.onmouseenter=function(){
-
 			body_right_word2.style.cssText="left:-47px";
-			body_right_word3.style.cssText="left:-73px";
-
-			body_right_word4.style.cssText="left:-800px";
-			body_right_red.style.display="block";
-			
 		}
 		
 		body_right_list.onmouseleave=function(){
 			body_right_word2.style.cssText="left:0;background-color:#383838;color:#FFAA01";
-			body_right_word3.style.cssText="left:0;background-color:#383838;color:#FFAA01";
-
-			body_right_word4.style.cssText="left:0";
-			body_right_red.style.display="none";
 		}
 			
 	}
-	const contentlist=document.querySelectorAll(".body_right_licai");
-	contentlist.forEach(function(ele){
+	const list=document.querySelectorAll(".body_right_item1");
+	list.forEach(function(ele){
 		right(ele);
+	})
+}
+{
+	function right2(parent){
+		let body_right_list2=parent.querySelector(".body_right_item2 a");
+		let body_right_word3=parent.querySelector(".body_right_word3");
+
+		body_right_list2.onmouseenter=function(){
+			body_right_word3.style.cssText="left:-73px";
+			
+		}
+		
+		body_right_list2.onmouseleave=function(){
+			body_right_word3.style.cssText="left:0;background-color:#383838;color:#FFAA01";
+		}
+			
+	}
+	const list2=document.querySelectorAll(".body_right_item2");
+	list2.forEach(function(ele){
+		right2(ele);
 	})
 
 }
+	let body_right_item3=document.querySelector(".body_right_item3");
+	let body_right_word4=document.querySelector(".body_right_word4");
+	let body_right_red=document.querySelector(".body_right_red");
+	body_right_item3.onmouseenter=function(){
+		body_right_word4.style.cssText="left:-195px";
+		body_right_red.style.display="block";
+	}
+	body_right_item3.onmouseleave=function(){
+		body_right_word4.style.cssText="left:0";
+		body_right_red.style.display="none";
+	}
+
+
+
 //页面上topBar部分
 {
 	let topBar=document.querySelector(".topBar");
@@ -226,53 +248,50 @@
 		}
 		
 	}
-
-	//左侧
-
-	{
-		let tips=document.querySelectorAll(".tips");
-		let containers=document.querySelectorAll(".container");
-		let flag=true;
-		tips.forEach(function(ele,index){
-			
-			ele.onclick=function(){
-				flag=false;
-				let ot=containers[index].offsetTop+560;
-				containers[index].offsetTop=ot;
-				let now=document.documentElement.scrollTop;
-				let speed=(ot-now)/10;
-				let time=0;
-				let t=setInterval(function(){
-					time+=25;
-					now+=speed;
-					if(time===250){
-						clearInterval(t);
-						flag=true;
-					}
-					document.documentElement.scrollTop=now;
-				},25)
-			}
-		});
-		window.addEventListener("scroll",function(ele,index){
-			if(flag){
-				let st=document.documentElement.scrollTop;
-				
-				for(let i=0;i<containers.length;i++){
-	   				if(st>containers[i].offsetTop+50){
-	   					for(let i=0;i<tips.length;i++){
-	   						tips[i].classList.remove("active");
-	   					}
-	   					
-	   					tips[i].classList.add("active");
-	   					
-	   				}
-				}
-			}
-		})
-	}
 }
 
-	
+//左侧部分效果
+{
+	let tips=document.querySelectorAll(".tips");
+	let containers=document.querySelectorAll(".container");
+	let flag=true;
+	tips.forEach(function(ele,index){
+		
+		ele.onclick=function(){
+			flag=false;
+			let ot=containers[index].offsetTop+560;
+			containers[index].offsetTop=ot;
+			let now=document.documentElement.scrollTop;
+			let speed=(ot-now)/10;
+			let time=0;
+			let t=setInterval(function(){
+				time+=25;
+				now+=speed;
+				if(time===250){
+					clearInterval(t);
+					flag=true;
+				}
+				document.documentElement.scrollTop=now;
+			},25)
+		}
+	});
+	window.addEventListener("scroll",function(ele,index){
+		if(flag){
+			let st=document.documentElement.scrollTop;
+			
+			for(let i=0;i<containers.length;i++){
+   				if(st>containers[i].offsetTop+50){
+   					for(let i=0;i<tips.length;i++){
+   						tips[i].classList.remove("active");
+   					}
+   					
+   					tips[i].classList.add("active");	
+   				}
+			}
+		}
+	})
+}
+
 //大聚惠部分效果
 {
 	const prev=document.querySelector(".dajuhui_lbtn");
@@ -376,11 +395,14 @@
 	})
 	
 }
+//视频部分效果
 {
 
 	const prev=document.querySelector(".shipin_lbtn");
 	const next=document.querySelector(".shipin_rbtn");
 	const inner=document.querySelector(".shipin_inner");
+	const title=document.querySelectorAll(".shipin_content");
+	const content=document.querySelectorAll(".shipin_pin_float");
 	let n=1;
 	let flag=true;
 	next.onclick=function(){
@@ -413,6 +435,15 @@
 			n=2;
 		}
 	})
+	content.forEach(function(ele,index){
+		ele.onmouseenter=function(){
+			for(var i=0;i<content.length;i++){
+					title[i].classList.remove("active");
+				}
+				title[index].classList.add("active");		
+		}
+	});
+	
 
 }
 //清单拼购效果

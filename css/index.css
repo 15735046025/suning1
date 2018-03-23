@@ -124,12 +124,6 @@
     margin-bottom: 5px;
     cursor: pointer;   
 }
-/* .body_right_licai2{
-	margin-top: 50px;
-}
-.body_right_licai3{
-	margin-top: 80px;
-} */
 .body_right_licai:hover .body_center_icon{
 	background-color: #FFAA01;
 }
@@ -179,11 +173,12 @@
 	position: absolute;
     top: -200px;
     left: 35px;
-	width: 0;
-	height: 0;
+	width: 170px;
+	height: 170px;
 	cursor: pointer;
 	transition: all 0.5s linear;
 	display: block;
+	background-color: rgba(0, 0, 0,0);
 }
 .body_right_licai:hover .body_right_word4{
 	opacity: 1;
@@ -228,14 +223,13 @@
 	position: absolute;
 	left: 35px;
 	top: 0;
-
 }
 .body_right_img2{
-	width: 80px;
-	height: 80px;
+	width: 100px;
+	height: 100px;
 	position: absolute;
-	left: 5px;
-	top: 5px;
+	left: 70px;
+	top: 60px;
 }
 .body_right_red{
 	background: url("../img/sidebaricon.png") no-repeat;
@@ -329,11 +323,20 @@
 	height: 35px;
 	padding: 0 10px;
 	line-height: 35px;
-	border-left:1px solid #F5F5F5 ;
-	border-right: 1px solid #F5F5F5;
+	border-left: 1px solid rgba(0, 0, 0, 0);
+	border-right: 1px solid rgba(0, 0, 0, 0);
+	border-top: 1px solid rgba(0, 0, 0, 0);
 	float: left;
 	cursor: pointer;
 	position: relative;
+	
+}
+.head_btn:hover{
+	/* border-left: 1px solid #F5F5F5;
+	border-right: 1px solid #F5F5F5;
+	border-top: 1px solid #F5F5F5; */
+	border-color: #F5F5F5;
+	background-color: #fff;
 }
 .head_wenzi{
 	font-size: 12px;
@@ -447,15 +450,18 @@
     font-size: 12px;
     z-index: 7691;
 }
+.shopping_box{
+	left: -180px;
+}
 .head_shouji_box{
 	width: 540px;
     height: 220px;
 	left:-459px ;
 }
 .head_shouji_btn{
-	float: left;
-    width: 180px;
-    margin: 17px 0 0;
+	float: right;
+    width: 179px;
+    margin: 30px 0 0;
 }
 .head_shouji_btn img{
 	display: block;
@@ -463,6 +469,22 @@
     height: 147px;
     margin: 0 auto 10px;
     border: 0;
+}
+.head_shouji_btn p{
+	width: 180px;
+    height: 14px;
+    line-height: 14px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+.head_shouji_line{
+	width: 1px;
+	height: 100px;
+	margin-top: 50px;
+	background-color: #ddd;
+	float: right;
 }
 .head_btn2:hover{
 	cursor: pointer;
@@ -532,6 +554,19 @@
 	float: left;
 	position: relative;
 	z-index: 102;
+}
+.shopping_imgbox{
+	width: 146px;
+	height: 96px;
+	margin:100px 0 0 70px; 
+	background: url('../img/sidebar.png');
+	background-position: 0 -291px;
+}
+.shopping_imgbox_word{
+	width: 100%;
+	font-size: 16px;
+	text-align: center;
+	color: #999;
 }
 .sousuo{
 	width: 1190px;
@@ -672,12 +707,17 @@
     float: left;
     line-height: 24px;
     color: #666;
+    cursor: pointer;
+}
+.soubuo_resou_btn:hover{
+	color: #fff;
+	background-color: #F60;
+	border-color: #F60;
 }
 .soubuo_resou_btn span{
 	display: block;
     padding: 0 5px;
     border: 1px solid #E1E1E1;
-    color: #666;
     font-size: 12px;
     text-align: center;
 }
@@ -1009,9 +1049,7 @@
 .menu_btn_right span{
 	color: #666;
     margin-right: 15px;
-    font-family: "Microsoft Yahei"
-    /* display: inline-block; */
-    /* text-decoration: none; */
+    font-family: "Microsoft Yahei";
 }
 .menu_btn_right .orange{
 	color: #f60;
@@ -1874,10 +1912,23 @@
 	color: white;
 	font-size: 20px;
 }
+.shipin_container{
+	width: 390px;
+	height: 227px;
+	position: absolute;
+	left: 0;
+	top: 45px;
+	background-color: red;
+}
+.shipin_container .active{
+	z-index: 99;
+}
 .shipin_content{
 	width: 390px;
 	height: 227px;
-	position: relative;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 .shipin_content img{
 	width: 390px;
